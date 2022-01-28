@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col">
+        <form [formGroup]="addQuestionform">
+            <div class="row  mb-3">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Question</span>
+                    <input type="text" class="form-control" placeholder="Write question here..." aria-label="Username"
+                    formControlName="question"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="error mb-1" *ngIf="addQuestionform.get('question')?.touched && addQuestionform.get('question')?.hasError('required')">
+                    <small>Question required</small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon2">Option 1</span>
+                        <input type="text" class="form-control" placeholder="Write Option 1 value here..."
+                        formControlName="option1"
+                            aria-label="Username" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="error mb-1" *ngIf="addQuestionform.get('option1')?.touched && addQuestionform.get('option1')?.hasError('required')">
+                        <small>Option 1 required</small>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12  mt-sm-3 mt-md-3 mt-lg-0 mt-3">
+                    <div class="col-3 input-group">
+                        <span class="input-group-text" id="basic-addon2">Option 2</span>
+                        <input type="text" class="form-control" placeholder="Write Option 2 value here..."
+                        formControlName="option2"
+                            aria-label="Username" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="error mb-1" *ngIf="addQuestionform.get('option2')?.touched && addQuestionform.get('option2')?.hasError('required')">
+                        <small>Option 2 required</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon3">Option 3</span>
+                        <input type="text" class="form-control" placeholder="Write Option 3 value here..."
+                        formControlName="option3"
+                            aria-label="Username" aria-describedby="basic-addon3">
+                    </div>
+                    <div class="error mb-1" *ngIf="addQuestionform.get('option3')?.touched && addQuestionform.get('option3')?.hasError('required')">
+                        <small>Option 3 required</small>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12  mt-sm-3 mt-md-3 mt-lg-0 mt-3">
+                    <div class="col-3 input-group">
+                        <span class="input-group-text" id="basic-addon4">Option 4</span>
+                        <input type="text" class="form-control" placeholder="Write Option 4 value here..."
+                        formControlName="option4"
+                            aria-label="Username" aria-describedby="basic-addon4">
+                    </div>
+                    <div class="error mb-1" *ngIf="addQuestionform.get('option4')?.touched && addQuestionform.get('option4')?.hasError('required')">
+                        <small>Option 4 required</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center">
+                <div class="col-lg-4 col-sm-12 justify-content-center">
+                    <div class="input-group">
+                        <span class="input-group-text col-3" id="basic-addon4">Answer</span>
+                        <select class=" form-select col-2" aria-label="Default select example"
+                        formControlName="answer"
+                            aria-describedby="basic-addon4">
+                            <option value="0" selected>Choose answer</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                        </select>
+                    </div>
+                    <div class="error mb-1" *ngIf="addQuestionform.get('answer')?.touched && addQuestionform.get('answer')?.value=='0'">
+                        <!-- addQuestionform.get('answer')?.hasError('required') -->
+                        <small>Answer required</small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-3 col-4  mt-sm-3 mt-md-3 mt-lg-0 mt-3 justify-content-center">
+                    <button type="button" class="btn btn-warning px-5" [disabled]="addQuestionform.value.answer=='0' || addQuestionform.invalid" (click)="submit()" >Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast toast0 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
+    role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Question created successfully.
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>

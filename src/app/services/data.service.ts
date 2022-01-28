@@ -16,7 +16,9 @@ export class DataService {
         "admin":{
           email:'abc@abc.com',
           password:'abcd1234',
-          loggedIn: false
+          loggedIn: false,
+          questions:[],
+          exam:[]
         }
       }
       this.userDB = db;

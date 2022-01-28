@@ -1,3 +1,4 @@
+import { AddQuestionComponent } from './pages/add-question/add-question.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path:'login' ,component:LoginComponent},
   { path:'navbar', canActivate:[AuthGuard],component:NavbarComponent},
   { path:'sidebar', canActivate:[AuthGuard],component:SidebarComponent},
+  { path:'addQuestion', canActivate:[AuthGuard],component:AddQuestionComponent},
   {path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
   { path:'**',redirectTo: '/dashboard'}
 ];

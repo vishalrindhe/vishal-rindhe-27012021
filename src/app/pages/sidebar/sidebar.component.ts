@@ -10,6 +10,10 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // document.body.style.backgroundColor = "#000000";
+    // document.body.style.maxWidth = "100%";
+    // document.body.style.overflowX = "hidden";
+
   }
 
 }
