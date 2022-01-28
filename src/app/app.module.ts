@@ -7,6 +7,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+
+import * as $ from "jquery";
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,10 @@ import { SidebarComponent } from './pages/sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

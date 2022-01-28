@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   constructor(private data: DataService, private router: Router) { 
-    if(!this.data.loggedIn){
-      this.router.navigateByUrl('/login');
-    }
+    // if(!this.data.loggedIn){
+    //   this.router.navigateByUrl('/login');
+    // }
   }
 
   ngOnInit(): void {

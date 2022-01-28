@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.horizontallyCenter{
+    justify-content: center;
+    display: grid !important;
+}
+
+
+.center{
+    justify-content: center;
+    display: grid;
+    align-items: center;
+}
+
+.error{
+    color: red;
+    font-size: 1rem;
+}

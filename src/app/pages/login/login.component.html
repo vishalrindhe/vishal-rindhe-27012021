@@ -1,1 +1,92 @@
-<p>login works!</p>
+<div class="row center">
+    <div class="col my-5">
+        <div class="row mt-4">
+            <div class="col center">
+                <img class="mb-3 imgSize"
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" alt="" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col center">
+                <h2 class="mb-3">Please sign in</h2>
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="col-8 col-lg-4 col-sm-6">
+                <form [formGroup]="loginform">
+                    <div class="">
+                        <input type="email" class="form-control p-3"
+                            [ngClass]="loginform.get('email')?.hasError('pattern') || loginform.get('email')?.hasError('required') ? '' : 'is-valid'"
+                            id="floatingInput" placeholder="Email address" formControlName="email" />
+                    </div>
+                    <div class="error mb-2"
+                        *ngIf="loginform.get('email')?.touched && loginform.get('email')?.hasError('required')">
+                        <small>Email required</small>
+                    </div>
+                    <div class="error mb-2" *ngIf="loginform.get('email')?.hasError('pattern')">
+                        <small>Invalid Email</small>
+                    </div>
+                    <div class="input-group">
+                        <input [type]="fieldTextType ? 'text' : 'password'" class="form-control p-3"
+                            [ngClass]="loginform.get('password')?.hasError('pattern') || loginform.get('password')?.hasError('required') ? '' : 'is-valid'"
+                            formControlName="password" id="floatingPassword" placeholder="Password" />
+
+                        <span class="input-group-text px-3">
+                            <i class="fa" [ngClass]="{
+                                  'fa-eye-slash': !fieldTextType,
+                                  'fa-eye': fieldTextType
+                                }" (click)="toggleFieldTextType()"></i>
+                        </span>
+                    </div>
+                    <div class="error mb-2"
+                        *ngIf="loginform.get('password')?.touched && loginform.get('password')?.hasError('required')">
+                        <small>Password required</small>
+                    </div>
+                    <div class="error mb-2" *ngIf="loginform.get('password')?.hasError('pattern')">
+                        <small>Password must be alphanumeric</small>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary my-3" type="submit" (click)="submit()"
+                        [disabled]="loginform.invalid">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast toast0 align-items-center text-white bg-danger border-0 position-absolute top-0 end-0 p-1 m-2"
+    role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{toastMessage}}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>
+
+<div class="toast toast1 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
+    role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{toastMessage}}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>
+
+<div class="toast toast2 align-items-center text-white bg-warning border-0 position-absolute top-0 end-0 p-1 m-2"
+    role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{toastMessage}}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>
