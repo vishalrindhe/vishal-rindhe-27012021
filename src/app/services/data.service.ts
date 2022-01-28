@@ -15,7 +15,7 @@ export class DataService {
       let db = {
         "admin":{
           email:'abc@abc.com',
-          password:'Abc@123',
+          password:'abcd1234',
           loggedIn: false
         }
       }
