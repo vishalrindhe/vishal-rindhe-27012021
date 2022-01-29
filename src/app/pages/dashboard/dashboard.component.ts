@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   addQuestionButton:boolean = false;
+  search = '';
   constructor(private data: DataService, private router: Router) { 
     // if(!this.data.loggedIn){
     //   this.router.navigateByUrl('/login');
@@ -26,6 +27,12 @@ export class DashboardComponent implements OnInit {
 
   addItem(newItem: any) {
     this.addQuestionButton = newItem
+  }
+
+  searchKey(key:any){
+    console.log(key);
+    this.search = key;
+    
   }
 
 }

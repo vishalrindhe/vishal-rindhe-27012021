@@ -37,7 +37,7 @@ export class AddQuestionComponent implements OnInit {
    this.data.userDB.admin.questions.push(b);  
    this.data.pushData();
    $('.toast0').toast('show');
-  //  this.addQuestionform.reset();
+   this.addQuestionform.reset();
     // this.data.userDB.admin.questions
   }
 }

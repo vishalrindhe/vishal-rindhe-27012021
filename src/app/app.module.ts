@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import * as $ from "jquery";
 import { AddQuestionComponent } from './pages/add-question/add-question.component';
+import { TableComponent } from './pages/table/table.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { AddQuestionComponent } from './pages/add-question/add-question.componen
     NavbarComponent,
     SidebarComponent,
     AddQuestionComponent,
+    TableComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,8 @@
           <!-- <li class="nav-item"> -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <form class="d-flex">
-                <input class="form-control me-2" size="70" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" size="70" name="search"
+                [(ngModel)]="search" type="search" placeholder="Search" aria-label="Search" (keyup)="searchData()">
                 <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
               </form>
 

@@ -8,8 +8,13 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   clickedOnAddQuestion: boolean = false
+  search='';
   @Output() newItemEvent = new EventEmitter<boolean>();
-  constructor() { }
+  @Output() searchKey = new EventEmitter<string>();
+
+  constructor() { 
+    console.log(this.search);
+  }
 
   ngOnInit(): void {
   }
@@ -17,5 +22,10 @@ export class NavbarComponent implements OnInit {
   addNewItem() {
     this.clickedOnAddQuestion = !this.clickedOnAddQuestion;
     this.newItemEvent.emit(this.clickedOnAddQuestion);
+  }
+
+  searchData(){
+    console.log(this.search);
+    this.searchKey.emit(this.search)
   }
 }
