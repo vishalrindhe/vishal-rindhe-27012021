@@ -21,8 +21,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    document.body.style.maxWidth = "100%";
-    document.body.style.overflowX = "hidden";
+    // document.body.style.maxWidth = "100%";
+    // document.body.style.overflowX = "hidden";
   }
 
   addItem(newItem: any) {

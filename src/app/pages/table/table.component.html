@@ -1,31 +1,67 @@
-<table class="table table-hover">
-    <thead>
+<div class="row">
+  <div class="col" align="left">
+    <!-- *ngIf="search == ''" -->
+    <button class="btn btn-outline-success mx-2 " (click)="exportExcel()">
+      <fa-icon class="excelIcon" [icon]="['fas','file-excel']"></fa-icon><br>
+      xlsx
+    </button>
+    <button class="btn btn-outline-primary" (click)="exportCsv()">
+      <fa-icon class="csvIcon" [icon]="['fas','file-csv']"></fa-icon><br>
+      csv
+    </button>
+  </div>
+  <table class="table table-hover table-responsive-md table-bordered border-dark my-3">
+    <thead class="table-light text-center border-dark">
       <tr>
         <th scope="col">No.</th>
         <th scope="col">Question</th>
-        <th scope="col">Option 1</th>
-        <th scope="col">Option 2</th>
-        <th scope="col">Option 3</th>
-        <th scope="col">Option 4</th>
+        <th  colspan="2">Options</th>
+        <!-- <th scope="col">Option 2</th> -->
+        <!-- <th scope="col">Option 3</th>
+        <th scope="col">Option 4</th> -->
         <th scope="col">Answer</th>
         <th scope="col"></th>
-    </tr>
+      </tr>
     </thead>
-    <tbody *ngFor="let info of data.userDB.admin.questions| filter: search:'question'; let i = index">
-        <!-- | filter: search:'name' -->
-      <tr>
-        <th scope="row">{{i+1}}</th>
+    <tbody class="table-striped" *ngFor="let info of tableData| slice:pageIndex*pageSize:(pageIndex+1)*pageSize; let i = index">
+      <!-- | filter: search:'question' -->
+            <tr>
+        <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
         <td>{{info.question}}</td>
-        <td>{{info.option1}}</td>
+        <td >
+          <tr><td>1. {{info.option1}}</td></tr><hr>
+            <tr>2. {{info.option3}}</tr>
+            </td>
+            <td>
+            <tr><td>3. {{info.option2}}</td></tr><hr>
+              <tr>4. {{info.option4}}</tr>
+        </td>
+
+        <!-- <td>
+          <tr>
+            <td>A. {{info.option1}}</td>
+        <td>B. {{info.option2}}</td>
+          </tr>
+          <tr>
+            <td>C. {{info.option1}}</td>
+        <td>D. {{info.option2}}</td>
+          </tr>
+        </td> -->
+        <!-- <td>{{info.option1}}</td>
         <td>{{info.option2}}</td>
         <td>{{info.option3}}</td>
-        <td>{{info.option4}}</td>
-        <td>Option {{info.answer}}</td>
+        <td>{{info.option4}}</td> -->
+        <td>{{info.answer | titlecase}}</td>
         <td>
-            <button class="btn"><i class="fa fas fa-edit edit"></i></button> 
-            <button class="btn"><i class="fa fa-trash delete"></i></button>
-        
+          <button class="btn"><i class="fa fas fa-edit edit"></i></button>
+          <button class="btn"><i class="fa fa-trash delete"></i></button>
+
         </td>
       </tr>
     </tbody>
   </table>
+  <div class="row text-center">
+    <div class="col">
+    <app-pager [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pager>
+  </div></div>
+  

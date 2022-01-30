@@ -15,6 +15,10 @@ import * as $ from "jquery";
 import { AddQuestionComponent } from './pages/add-question/add-question.component';
 import { TableComponent } from './pages/table/table.component';
 import { FilterPipe } from './pipe/filter.pipe';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { PagerComponent } from './pages/pager/pager.component';
 
 
 @NgModule({
@@ -27,6 +31,7 @@ import { FilterPipe } from './pipe/filter.pipe';
     AddQuestionComponent,
     TableComponent,
     FilterPipe,
+    PagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +39,13 @@ import { FilterPipe } from './pipe/filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+ }
