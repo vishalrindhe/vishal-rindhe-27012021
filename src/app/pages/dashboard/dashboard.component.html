@@ -10,12 +10,12 @@
     <div class="col-9">
         <div class="row" *ngIf="addQuestionButton">
             <div class="col m-2">
-                <app-add-question></app-add-question>
+                <app-add-question [questionId]="editQuestionId" (reloadFlag)="reload($event)"  ></app-add-question>
             </div>
         </div>
         <div class="row">
             <div class="col m-2">
-                <app-table [search]="search"></app-table>
+                <app-table [search]="search" (questionId)="questionId($event)" [reload]="reloadFlag"></app-table>
             </div>
         </div>
     </div>

@@ -1,3 +1,5 @@
+{{questionId}}
+
 <div class="row">
     <div class="col">
         <form [formGroup]="addQuestionform">
@@ -5,7 +7,7 @@
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Question</span>
                     <input type="text" class="form-control" placeholder="Write question here..." aria-label="Username"
-                    formControlName="question"
+                    formControlName="question" value ="{{question}}" id="question"
                         aria-describedby="basic-addon1">
                 </div>
                 <div class="error mb-1" *ngIf="addQuestionform.get('question')?.touched && addQuestionform.get('question')?.hasError('required')">
@@ -17,7 +19,7 @@
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon2">Option 1</span>
                         <input type="text" class="form-control" placeholder="Write Option 1 value here..."
-                        formControlName="option1"
+                        formControlName="option1" value="{{option1}}"
                             aria-label="Username" aria-describedby="basic-addon2">
                     </div>
                     <div class="error mb-1" *ngIf="addQuestionform.get('option1')?.touched && addQuestionform.get('option1')?.hasError('required')">
@@ -28,7 +30,7 @@
                     <div class="col-3 input-group">
                         <span class="input-group-text" id="basic-addon2">Option 2</span>
                         <input type="text" class="form-control" placeholder="Write Option 2 value here..."
-                        formControlName="option2"
+                        formControlName="option2" value="{{option2}}"
                             aria-label="Username" aria-describedby="basic-addon2">
                     </div>
                     <div class="error mb-1" *ngIf="addQuestionform.get('option2')?.touched && addQuestionform.get('option2')?.hasError('required')">
@@ -41,7 +43,7 @@
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon3">Option 3</span>
                         <input type="text" class="form-control" placeholder="Write Option 3 value here..."
-                        formControlName="option3"
+                        formControlName="option3" value="{{option3}}"
                             aria-label="Username" aria-describedby="basic-addon3">
                     </div>
                     <div class="error mb-1" *ngIf="addQuestionform.get('option3')?.touched && addQuestionform.get('option3')?.hasError('required')">
@@ -52,7 +54,7 @@
                     <div class="col-3 input-group">
                         <span class="input-group-text" id="basic-addon4">Option 4</span>
                         <input type="text" class="form-control" placeholder="Write Option 4 value here..."
-                        formControlName="option4"
+                        formControlName="option4" value="{{option4}}"
                             aria-label="Username" aria-describedby="basic-addon4">
                     </div>
                     <div class="error mb-1" *ngIf="addQuestionform.get('option4')?.touched && addQuestionform.get('option4')?.hasError('required')">
@@ -64,10 +66,10 @@
                 <div class="col-lg-4 col-sm-12 justify-content-center">
                     <div class="input-group">
                         <span class="input-group-text col-3" id="basic-addon4">Answer</span>
-                        <select class=" form-select col-2" aria-label="Default select example"
-                        formControlName="answer"
+                        <select id="options" class=" form-select col-2" aria-label="Default select example"
+                        formControlName="answer" value="{{answer}}"
                             aria-describedby="basic-addon4">
-                            <option value="0" selected>Choose answer</option>
+                            <option value="0">Choose answer</option>
                             <option value="option 1">Option 1</option>
                             <option value="option 2">Option 2</option>
                             <option value="option 3">Option 3</option>
@@ -80,14 +82,16 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-3 col-4  mt-sm-3 mt-md-3 mt-lg-0 mt-3 justify-content-center">
-                    <button type="button" class="btn btn-warning px-5" [disabled]="addQuestionform.value.answer=='0' || addQuestionform.invalid" (click)="submit()" >Submit</button>
+                    <button type="button" class="btn btn-warning px-5" [disabled]="addQuestionform.value.answer=='0' || addQuestionform.invalid" (click)="submit()" >
+                        {{ id == '' ? 'Submit':'Update' }}
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="toast toast0 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
+<div class="toast toast3 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
     role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
