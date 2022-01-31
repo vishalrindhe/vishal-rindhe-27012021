@@ -22,6 +22,9 @@ import { PagerComponent } from './pages/pager/pager.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SortPipe } from './pipe/sort.pipe';
+import { AddExamComponent } from './pages/add-exam/add-exam.component';
+import {MatTableModule} from '@angular/material/table'; 
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { SortPipe } from './pipe/sort.pipe';
     FilterPipe,
     PagerComponent,
     SortPipe,
+    AddExamComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { SortPipe } from './pipe/sort.pipe';
     HttpClientModule,
     FontAwesomeModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

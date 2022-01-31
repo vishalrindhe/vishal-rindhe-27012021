@@ -10,7 +10,8 @@
       csv
     </button>
   </div>
-  <table class="table table-hover table-responsive-lg table-bordered border-dark my-3">
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+  <table class="table table-hover table-responsive-lg table-bordered border-dark my-3" size="50vh" style="overflow: scroll;">
     <thead class="table-light text-center border-dark">
       <tr>
         <th scope="col">No.</th>
@@ -51,7 +52,7 @@
               <tr>4. {{info.option4 | titlecase}}</tr>
           </td>
           <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">{{info.answer | titlecase}}</td>
-          <td>
+          <td class="text-center">
             <button class="btn" (click)="editQuestion(info.id)"><i class="fa fas fa-edit edit"></i></button>
             <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="passId(info.id)"><i
                 class="fa fa-trash delete"></i></button>
