@@ -14,7 +14,12 @@
     <thead class="table-light text-center border-dark">
       <tr>
         <th scope="col">No.</th>
-        <th scope="col">Question</th>
+        <th scope="col" (click)="sort()">Question
+          <fa-icon *ngIf="order == ''" class="" [icon]="['fas','caret-up']"></fa-icon>
+          <fa-icon *ngIf="order == 'asc'" class="" [icon]="['fas','caret-up']"></fa-icon>
+          <fa-icon *ngIf="order == 'desc'" class="" [icon]="['fas','caret-down']"></fa-icon>
+
+        </th>
         <th colspan="2">Options</th>
         <!-- <th scope="col">Option 2</th> -->
         <!-- <th scope="col">Option 3</th>
@@ -27,88 +32,116 @@
       *ngFor="let info of tableData| slice:pageIndex*pageSize:(pageIndex+1)*pageSize; let i = index">
       <!-- | filter: search:'question' -->
       <tr>
-        <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
-        <td>{{info.question}}</td>
-        <td>
-      <tr>
-        <td>1. {{info.option1}}</td>
-      </tr>
-      <hr>
-      <tr>3. {{info.option3}}</tr>
-      </td>
-      <td>
-        <tr>
-          <td>2. {{info.option2}}</td>
-        </tr>
-        <hr>
-        <tr>4. {{info.option4}}</tr>
-      </td>
+          <th scope="row" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">{{(pageIndex*pageSize)+i+1}}</th>
+          <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">
+            {{info.question | titlecase}}
+          </td>
+          <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">
+            <tr>
+              <td>1. {{info.option1 | titlecase}}</td>
+            </tr>
+            <hr>
+            <tr>3. {{info.option3 | titlecase}}</tr>
+          </td>
+          <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">
+              <tr>
+                <td>2. {{info.option2 | titlecase}}</td>
+              </tr>
+              <hr>
+              <tr>4. {{info.option4 | titlecase}}</tr>
+          </td>
+          <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">{{info.answer | titlecase}}</td>
+          <td>
+            <button class="btn" (click)="editQuestion(info.id)"><i class="fa fas fa-edit edit"></i></button>
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="passId(info.id)"><i
+                class="fa fa-trash delete"></i></button>
 
-      <!-- <td>
-          <tr>
-            <td>A. {{info.option1}}</td>
-        <td>B. {{info.option2}}</td>
-          </tr>
-          <tr>
-            <td>C. {{info.option1}}</td>
-        <td>D. {{info.option2}}</td>
-          </tr>
-        </td> -->
-      <!-- <td>{{info.option1}}</td>
-        <td>{{info.option2}}</td>
-        <td>{{info.option3}}</td>
-        <td>{{info.option4}}</td> -->
-      <td>{{info.answer | titlecase}}</td>
-      <td>
-        <button class="btn" (click)="editQuestion(info.id)" ><i class="fa fas fa-edit edit"></i></button>
-        <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="passId(info.id)"><i class="fa fa-trash delete"></i></button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> -->
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col" align="right">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col">
+                        <h2 class="text-center">Are you sure?</h2>
+                        <h5 class=" text-black-50">Do you want to delete this record?</h5>
+                      </div>
+                    </div>
+                    <div class="row center my-4">
+                      <div class="col" align="right">
+                        <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button>
+                      </div>
+                      <div class="col">
+                        <button type="button" class="btn btn-danger btn-lg" (click)="deleteQuestion()">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <!-- <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div> -->
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col" align="right">
+            <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="viewModalLabel">Modal title</h5> -->
+                    <b>Question No {{indexVal}}</b>
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                </div>
-                <div class="row text-center">
-                  <div class="col">
-                    <!-- <fa-icon class="crossIcon" [icon]="['fas','exclamation-circle']"></fa-icon> -->
-                    <h2 class="text-center">Are you sure?</h2>
-                    <h5 class=" text-black-50">Do you want to delete this record?</h5>
-                  </div>
-                </div>
-                <div class="row center my-4">
-                  <div class="col" align="right">
-                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col">
-                    <button type="button" class="btn btn-danger btn-lg" (click)="deleteQuestion()">Delete</button>
-                  </div>
-                </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <!-- <div class="row">
+                        <div class="col">
+                          <b>Question No {{indexVal}}</b>
+                        </div>
+                      </div> -->
+                      <div class="row">
+                        <div class="col">
+                          <h4>{{question | uppercase}}</h4>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col p-2 px-3 my-2" [ngClass]="answer == 'option 1' ? 'greenBg' : 'grayBg'">
+                          <b>A : </b>{{option1 | titlecase}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col p-2 px-3 my-2" [ngClass]="answer == 'option 2' ? 'greenBg' : 'grayBg'">
+                          <!-- <span class="dot p-2 px-3">B</span> -->
+                          <b>B : </b>
+                          {{option2 | titlecase}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col p-2  px-3 my-2" [ngClass]="answer == 'option 3' ? 'greenBg' : 'grayBg'">
+                          <b>C : </b>{{option3 | titlecase}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col p-2 px-3 my-2" [ngClass]="answer == 'option 4' ? 'greenBg' : 'grayBg'">
+                          <b>D : </b>{{option4 | titlecase}}
+                        </div>
+                      </div>
 
-              </div>
-              <!-- <div class="modal-footer text-center">
-                <div class="row text-center">
-                  <div class="col-4">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                    <div class="col-8">
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                   </div>
                 </div>
- 
-              </div> -->
+              </div>
             </div>
-          </div>
-        </div>
-
-      </td>
+          </td>
       </tr>
     </tbody>
   </table>
@@ -120,10 +153,10 @@
   <div class="toast toast4 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
     role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
-        <div class="toast-body">
-            Question Deleted.
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-            aria-label="Close"></button>
+      <div class="toast-body">
+        Question Deleted.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+        aria-label="Close"></button>
     </div>
-</div>
+  </div>

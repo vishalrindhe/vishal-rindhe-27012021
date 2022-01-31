@@ -140,7 +140,8 @@ export class AddQuestionComponent implements OnInit, OnChanges, AfterViewInit {
    $('#options').val("0");
    this.addQuestionform.value.answer = '0'
   //  location.reload()
-  this.reloadFlag.emit(!this.reloadFlag)
+  this.reloadFlag.emit(!this.reloadFlag);
+  alert(this.reloadFlag)
    console.log(this.addQuestionform.value);
   }
 }

@@ -21,6 +21,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { PagerComponent } from './pages/pager/pager.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SortPipe } from './pipe/sort.pipe';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableComponent,
     FilterPipe,
     PagerComponent,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

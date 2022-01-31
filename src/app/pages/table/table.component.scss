@@ -44,3 +44,26 @@ td{
         }
     }
   }
+
+  .grayBg{
+    //   background-color: #8c8c8cda;
+      border-style: solid;
+      border-radius: 500px;
+    border-width: 1px;
+
+  }
+  .greenBg{
+    border-style: solid;
+    border-radius: 500px;
+    background-color: #55c657da;
+    border-width: 1px;
+}
+.dot {
+    height: 2em;
+    width: 2em;
+    background-color: #bbb;
+    border-radius: 50%;
+    // display: grid;
+    justify-content: center;
+    // align-items: center;
+  }

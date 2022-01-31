@@ -1,3 +1,4 @@
+import { SortPipe } from './../../pipe/sort.pipe';
 import { FilterPipe } from './../../pipe/filter.pipe';
 import { DataService } from './../../services/data.service';
 import { Router } from '@angular/router';
@@ -14,7 +15,7 @@ declare var $: any;
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [FilterPipe]
+  providers: [FilterPipe, SortPipe]
 })
 export class TableComponent implements OnInit, OnChanges {
   @ViewChild('exampleModal') exampleModal: any;
@@ -22,6 +23,13 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() reload:any;
   @Output() questionId = new EventEmitter<string>();
 
+  question=''
+  option1=''
+  option2=''
+  option3=''
+  option4=''
+  answer=''
+  order = '';
   item = '';
   items: object[] = this.data.userDB.admin.questions;
   fieldNames: string[] = [];
@@ -30,7 +38,8 @@ export class TableComponent implements OnInit, OnChanges {
   idToBeDelete = '';
   tableData = this.pipe.transform(this.data.userDB.admin.questions, this.search, 'question');
   count: any = this.tableData.length;
-  constructor(private router: Router, public data: DataService, private pipe: FilterPipe) {
+  indexVal: any;
+  constructor(private router: Router, public data: DataService, private pipe: FilterPipe, private sortPipe:SortPipe) {
     // this.pageIndex = 0;
     // this.pageSize = 5;
     // this.items = this.data.userDB.admin.questions
@@ -45,6 +54,15 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   updateTableData(){
+    this.tableData = this.tableData.map(function(a) { 
+      a.question = a.question.toLowerCase();
+      a.option1 = a.option1.toLowerCase();
+      a.option2 = a.option2.toLowerCase();
+      a.option3 = a.option3.toLowerCase();
+      a.option4 = a.option4.toLowerCase();
+      a.answer = a.answer.toLowerCase();
+      return a;
+     });
     this.tableData = this.pipe.transform(this.data.userDB.admin.questions, this.search, 'question');
     this.count = this.tableData?.length;
   }
@@ -126,4 +144,28 @@ export class TableComponent implements OnInit, OnChanges {
     this.questionId.emit(id);
   }
 
+
+  sort(){
+    if(this.order === ''){
+      this.tableData = this.sortPipe.transform(this.tableData,"desc","question")
+      this.order = 'desc';
+    } else if(this.order === 'asc'){
+      this.tableData = this.sortPipe.transform(this.tableData,"desc","question")
+      this.order = 'desc';
+    } else {
+      this.tableData = this.sortPipe.transform(this.tableData,"asc","question")
+      this.order = 'asc';
+    } 
+  }
+
+  modalData(data:any,indexVal:any){
+    this.indexVal = indexVal
+    this.question=data.question
+    this.option1=data.option1
+    this.option2=data.option2
+    this.option3=data.option3
+    this.option4=data.option4
+    this.answer=data.answer
+    // alert(question)
+  }
 }
