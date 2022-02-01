@@ -67,7 +67,7 @@ export class AddQuestionComponent implements OnInit, OnChanges, AfterViewInit {
       if (element.id === this.questionId) {
         this.id = this.questionId
         // this.questionId = ''
-        alert(this.id)
+        // alert(this.id)
 
         // this.addQuestionform.reset(this.answer);
         this.question = element.question;
@@ -115,7 +115,7 @@ export class AddQuestionComponent implements OnInit, OnChanges, AfterViewInit {
     a = uuid();
     let d = uuidValidate(a)
     if(d){
-      alert("inside d")
+      // alert("inside d")
       b.id = a;
       this.data.userDB.admin.questions.push(b); 
     }
@@ -141,7 +141,7 @@ export class AddQuestionComponent implements OnInit, OnChanges, AfterViewInit {
    this.addQuestionform.value.answer = '0'
   //  location.reload()
   this.reloadFlag.emit(!this.reloadFlag);
-  alert(this.reloadFlag)
+  // alert(this.reloadFlag)
    console.log(this.addQuestionform.value);
   }
 }

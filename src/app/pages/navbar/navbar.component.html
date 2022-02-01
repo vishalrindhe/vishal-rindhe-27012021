@@ -1,7 +1,7 @@
-<nav class="navbar  navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top  navbar-expand-lg navbar-light bg-light">
   <!-- sticky-top -->
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">DashBoard</a>
+      <a class="navbar-brand fs-3 fw-bolder font-monospace" href="#">Admin Panel</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,12 +44,12 @@
           <input class="form-control me-2" size="50" name="search"
           [(ngModel)]="search" type="search" placeholder="Search" aria-label="Search" (keyup)="searchData()">
         </form>
-        <button class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#createExamModal" (click)="addNewItem()">Add Exam</button>
-
+        <button class="btn btn-warning mx-1"  (click)="exam()">Add Exam</button>
+        <!-- data-bs-toggle="modal" data-bs-target="#createExamModal"s -->
         <button class="btn btn-success  mx-1" (click)="addNewItem()">Add Question</button>
 
 
-        <button class="btn btn-outline-danger  mx-1">Sign Out</button>
+        <button class="btn btn-outline-danger  mx-1" (click)="signOut()">Sign Out</button>
 
       </div>
     </div>
@@ -61,12 +61,35 @@
       <div class="modal-content">
         <div class="modal-header bg-dark bg-gradient text-white">
           <span class="fs-4">Create Exam</span>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white"  data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         <div class="modal-body">
          <!-- <h1>jhj</h1> -->
-         <app-add-exam></app-add-exam>
+         <app-add-exam [examId]="editExamId" ></app-add-exam>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="toast toast5 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
+  role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+        
+        {{ editExamId == '' ? 'Exam Created' : 'Updated' }}
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+      aria-label="Close"></button>
+  </div>
+</div>
+
+<div class="toast toast7 align-items-center text-white bg-success border-0 position-absolute top-0 end-0 p-1 m-2"
+role="alert" aria-live="assertive" aria-atomic="true">
+<div class="d-flex">
+  <div class="toast-body">
+      Signed Out
+  </div>
+  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+    aria-label="Close"></button>
+</div>
+</div>

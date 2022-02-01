@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   search = '';
   editQuestionId = '';
   reloadFlag: any;
+  editExamId = ''
 
   constructor(private data: DataService, private router: Router,private spinner: NgxSpinnerService) { 
     // if(!this.data.loggedIn){
@@ -32,6 +33,10 @@ export class DashboardComponent implements OnInit {
   addItem(newItem: any) {
     this.addQuestionButton = newItem
     this.editQuestionId = ''
+  }
+
+  editExam(newItem: any) {
+    this.editExamId = newItem
   }
 
   questionId(id:any){

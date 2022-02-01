@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+
+declare var $: any;
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +12,11 @@ import { Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
   clickedOnAddQuestion: boolean = false
   search='';
+  @Input() editExamId = ''
   @Output() newItemEvent = new EventEmitter<boolean>();
   @Output() searchKey = new EventEmitter<string>();
 
-  constructor() { 
+  constructor(private data:DataService) { 
     console.log(this.search);
   }
 
@@ -24,8 +28,25 @@ export class NavbarComponent implements OnInit {
     this.newItemEvent.emit(this.clickedOnAddQuestion);
   }
 
+  exam(){
+    this.editExamId = ''
+    // alert(this.editExamId)
+    
+    // setTimeout(()=>{
+      $('#createExamModal').modal('show');
+    // },2000)
+
+    
+  }
   searchData(){
     console.log(this.search);
     this.searchKey.emit(this.search)
+  }
+
+  signOut(){
+    this.data.userDB.admin.loggedIn = false
+    this.data.pushData()
+    location.reload()
+    $('.toast7').toast('show');
   }
 }
