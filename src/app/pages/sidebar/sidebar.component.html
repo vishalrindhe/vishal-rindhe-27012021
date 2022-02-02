@@ -3,24 +3,27 @@
       <a class="navbar-brand" href="#">Fixed top</a>
     </div>
   </nav> -->
-  <div class="row bg-danger bg-gradient ">
+  <div class="row  shadow bg-secondary " style="background-color: #656e76;">
       <div class="col center text-center">
           <h2 class="m-3 fs-4 text-white">Exam List</h2>
       </div>
   </div>
 <div class="row m-3">
     <div class="col-12" *ngFor="let item of data.userDB.admin.exam">
-        <div class="card mb-3 shadow-lg rounded bg-white">
+        <div class="card mb-3 shadow rounded bg-white">
             <div class="card-body">
                 <h5 class="card-title fs-4 text-center">{{item.examName | titlecase}}</h5>
                 <div class="row text-center">
                     <div class="col">
-                        <button class="btn" >
-                            <i class="fa fas fa-edit edit" (click)="editExam(item.examId)"></i>
+                        <button class="btn btn-info shadow" >
+                            <i class="fa fas fa-edit edit mx-3" (click)="editExam(item.examId)"></i>
                         </button>
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#examDeleteModal" (click)="getExamId(item.examId)">
-                            <i class="fa fa-trash delete"></i>
+                        </div>
+                        <div class="col">
+                        <button class="btn btn-danger shadow" data-bs-toggle="modal" data-bs-target="#examDeleteModal" (click)="getExamId(item.examId)">
+                            <i class="fa fa-trash delete mx-3"></i>
                         </button>
+
 
                         <div class="modal fade center" id="examDeleteModal" tabindex="-1" aria-labelledby="examDeleteModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

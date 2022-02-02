@@ -1,18 +1,18 @@
-<div class="row mt-5">
+<div class="row m-3">
   <div class="col" align="left">
     <!-- *ngIf="search == ''" -->
-    <button class="btn btn-outline-success mx-2 " (click)="exportExcel()">
+    <button class="btn btn-outline-success mx-2 shadow " (click)="exportExcel()">
       <fa-icon class="excelIcon" [icon]="['fas','file-excel']"></fa-icon><br>
       xlsx
     </button>
-    <button class="btn btn-outline-primary" (click)="exportCsv()">
+    <button class="btn btn-outline-primary shadow" (click)="exportCsv()">
       <fa-icon class="csvIcon" [icon]="['fas','file-csv']"></fa-icon><br>
       csv
     </button>
   </div>
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-  <table class="table table-hover table-responsive-lg table-bordered border-dark my-3" size="50vh" style="overflow: scroll;">
-    <thead class="table-light text-center border-dark">
+  <table class="table table-hover table-responsive-lg table-bordered border-dark shadow rounded bg-white my-3" size="50vh" style="overflow: scroll;">
+    <thead class="table-light text-center border-dark fs-6">
       <tr>
         <th scope="col">No.</th>
         <th scope="col" (click)="sort()">Question
@@ -29,11 +29,11 @@
         <th scope="col"></th>
       </tr>
     </thead>
-    <tbody class="table-striped fs-5"
+    <tbody class="table-striped fs-6"
       *ngFor="let info of tableData| slice:pageIndex*pageSize:(pageIndex+1)*pageSize; let i = index">
       <!-- | filter: search:'question' -->
       <tr>
-          <th scope="row" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">{{(pageIndex*pageSize)+i+1}}</th>
+          <th class="text-center" scope="row" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">{{(pageIndex*pageSize)+i+1}}</th>
           <td data-bs-toggle="modal" data-bs-target="#viewModal" (click)="modalData(info,(pageIndex*pageSize)+i+1)">
             {{info.question | titlecase}}
           </td>
